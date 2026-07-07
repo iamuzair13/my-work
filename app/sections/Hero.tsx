@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, Download } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { TechIcon } from "@/app/components/TechIcon";
 import { GlassButton } from "@/app/components/ui/GlassButton";
 import { KineticText } from "@/app/components/ui/KineticText";
 import { LiquidGlass } from "@/app/components/ui/LiquidGlass";
@@ -49,6 +50,9 @@ export function Hero() {
     >
       <div className="mesh-gradient" aria-hidden />
       <div className="mesh-gradient-cyan" aria-hidden />
+      <div className="floating-orb floating-orb-1" aria-hidden />
+      <div className="floating-orb floating-orb-2" aria-hidden />
+      <div className="floating-orb floating-orb-3" aria-hidden />
       {showParticles && <ParticleField />}
 
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-primary/20 to-bg-primary" />
@@ -76,14 +80,14 @@ export function Hero() {
 
               <motion.p
                 variants={staggerItem}
-                className="mt-6 text-lg text-text-secondary md:text-xl"
+                className="hero-text-shadow mt-6 text-lg text-text-secondary md:text-xl"
               >
                 Hi, I&apos;m {firstName}
               </motion.p>
 
               <motion.h1
                 variants={staggerItem}
-                className="mt-2 text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl xl:text-7xl"
+                className="hero-text-shadow mt-2 text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.15] tracking-tight"
               >
                 <span className="gradient-text block">{heroHeadlines[0]}</span>
                 <span className="mt-2 block bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-tertiary bg-clip-text text-transparent">
@@ -93,7 +97,7 @@ export function Hero() {
 
               <motion.p
                 variants={staggerItem}
-                className="mx-auto mt-6 max-w-xl text-lg text-text-secondary md:text-xl lg:mx-0"
+                className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-text-secondary md:text-xl lg:mx-0"
               >
                 {siteConfig.description}
               </motion.p>
@@ -150,7 +154,7 @@ export function Hero() {
                 style={tilt.style}
                 onMouseMove={tilt.onMouseMove}
                 onMouseLeave={tilt.onMouseLeave}
-                className="gradient-border relative rounded-3xl p-1 shadow-[0_20px_60px_rgba(99,102,241,0.15)]"
+                className="gradient-border relative rounded-3xl p-1 shadow-[0_0_40px_rgba(59,130,246,0.3)] ring-2 ring-accent-primary/40"
               >
                 <LiquidGlass variant="hero" className="overflow-hidden rounded-[22px]">
                   <Image
@@ -190,16 +194,19 @@ export function Hero() {
           <p className="mb-6 text-center text-xs font-medium uppercase tracking-widest text-text-muted">
             Trusted Technologies
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
             {techBadges.map((badge) => (
               <LiquidGlass
                 key={badge.name}
                 variant="pill"
-                className="transition-all duration-300 hover:-translate-y-1"
+                shine={false}
+                className="transition-transform duration-300 hover:scale-105"
               >
-                <span className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary">
-                  <span className="h-2 w-2 rounded-full bg-accent-primary" />
-                  {badge.name}
+                <span className="flex flex-col items-center gap-1.5 px-3 py-3 text-center sm:flex-row sm:px-4 sm:py-2 sm:text-left">
+                  <TechIcon name={badge.icon} className="h-5 w-5" />
+                  <span className="text-xs font-medium text-text-secondary sm:text-sm">
+                    {badge.name}
+                  </span>
                 </span>
               </LiquidGlass>
             ))}
@@ -209,10 +216,15 @@ export function Hero() {
 
       <a
         href="#about"
-        className="focus-ring absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full text-text-muted transition-colors hover:text-text-secondary"
+        className="focus-ring absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
         aria-label="Scroll to about"
       >
-        <ChevronDown className="h-6 w-6 animate-bounce-soft" />
+        <LiquidGlass variant="pill" className="animate-bounce-soft">
+          <span className="flex items-center gap-2 px-4 py-2 text-sm text-text-muted transition-colors hover:text-text-secondary">
+            Scroll
+            <ChevronDown className="h-4 w-4" />
+          </span>
+        </LiquidGlass>
       </a>
     </section>
   );

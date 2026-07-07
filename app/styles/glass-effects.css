@@ -1,32 +1,56 @@
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-tertiary: #1a1a2e;
-  --accent-primary: #6366f1;
-  --accent-secondary: #8b5cf6;
+  --bg-primary: #eef2f6;
+  --bg-secondary: #eef2f6;
+  --bg-tertiary: #e0e7ff;
+  --accent-primary: #3b82f6;
+  --accent-secondary: #6366f1;
   --accent-tertiary: #06b6d4;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.12);
-  --glass-surface: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-bg-elevated: rgba(255, 255, 255, 0.1);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.04);
-  --glass-bg-hero: rgba(255, 255, 255, 0.08);
+  --text-primary: #1a1a2e;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border: rgba(0, 0, 0, 0.06);
+  --border-hover: rgba(0, 0, 0, 0.12);
+  --glass-surface: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+  --glass-bg-elevated: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.65) 100%
+  );
+  --glass-bg-subtle: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  --glass-bg-hero: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(255, 255, 255, 0.58) 100%
+  );
+  --glass-bg-pill: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.52) 100%
+  );
   --glass-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
-  --btn-secondary-bg-hover: rgba(255, 255, 255, 0.1);
-  --btn-secondary-border: rgba(255, 255, 255, 0.1);
-  --input-bg: rgba(255, 255, 255, 0.05);
-  --input-border: rgba(255, 255, 255, 0.1);
-  --selection-bg: rgba(99, 102, 241, 0.35);
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-backdrop: blur(24px) saturate(180%);
+  --glass-backdrop-subtle: blur(20px) saturate(150%);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.7);
+  --btn-secondary-bg-hover: rgba(59, 130, 246, 0.1);
+  --btn-secondary-border: rgba(255, 255, 255, 0.5);
+  --input-bg: rgba(255, 255, 255, 0.75);
+  --input-border: rgba(0, 0, 0, 0.08);
+  --selection-bg: rgba(59, 130, 246, 0.25);
+  --code-bg: #1a1a2e;
+  --mesh-opacity: 0.16;
   --success: #10b981;
   --warning: #f59e0b;
 
@@ -35,13 +59,68 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+.dark {
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1a1a2e;
+  --accent-primary: #60a5fa;
+  --accent-secondary: #8b5cf6;
+  --accent-tertiary: #06b6d4;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --glass-surface: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  --glass-bg-elevated: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.04)
+  );
+  --glass-bg-subtle: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  --glass-bg-hero: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  --glass-bg-pill: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.03)
+  );
+  --glass-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-backdrop: blur(20px) saturate(180%);
+  --glass-backdrop-subtle: blur(20px) saturate(150%);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --btn-secondary-bg-hover: rgba(255, 255, 255, 0.1);
+  --btn-secondary-border: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --selection-bg: rgba(96, 165, 250, 0.35);
+  --code-bg: #0d0d14;
+  --mesh-opacity: 0.15;
+}
+
 @supports not (backdrop-filter: blur(20px)) {
   .liquid-glass,
   .glass,
   .glass-elevated,
   .glass-subtle,
   .glass-hero {
-    background: rgba(18, 18, 26, 0.95);
+    background: var(--bg-secondary);
   }
 }
 
@@ -51,8 +130,13 @@
   .glass-elevated,
   .glass-subtle,
   .glass-hero {
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+  }
+
+  .glass-subtle {
+    backdrop-filter: var(--glass-backdrop-subtle);
+    -webkit-backdrop-filter: var(--glass-backdrop-subtle);
   }
 }
 
@@ -60,6 +144,19 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   contain: layout style paint;
+}
+
+.liquid-glass-scrolled {
+  background: var(--glass-bg-elevated) !important;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.12),
+    var(--glass-inset) !important;
+}
+
+.dark .liquid-glass-scrolled {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    var(--glass-inset) !important;
 }
 
 .focus-ring {
@@ -101,4 +198,43 @@
   border-radius: 8px;
   font-weight: 500;
   text-decoration: none;
+}
+
+.code-editor {
+  background: var(--code-bg);
+}
+
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+}
+
+.floating-orb-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 5%;
+  background: rgba(59, 130, 246, 0.2);
+  animation-delay: 0s;
+}
+
+.floating-orb-2 {
+  width: 250px;
+  height: 250px;
+  top: 60%;
+  right: 10%;
+  background: rgba(99, 102, 241, 0.15);
+  animation-delay: -3s;
+}
+
+.floating-orb-3 {
+  width: 200px;
+  height: 200px;
+  bottom: 20%;
+  left: 30%;
+  background: rgba(6, 182, 212, 0.12);
+  animation-delay: -5s;
 }

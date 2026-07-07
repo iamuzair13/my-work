@@ -1,5 +1,18 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Mail } from "lucide-react";
 import { navLinks, siteConfig, socialLinks } from "@/app/data/portfolio";
+
+function SocialIcon({ icon }: { icon: string }) {
+  switch (icon) {
+    case "linkedin":
+      return <Linkedin className="h-5 w-5" />;
+    case "github":
+      return <Github className="h-5 w-5" />;
+    case "email":
+      return <Mail className="h-5 w-5" />;
+    default:
+      return <ExternalLink className="h-5 w-5" />;
+  }
+}
 
 export function Footer() {
   return (
@@ -26,33 +39,18 @@ export function Footer() {
           </nav>
 
           <div className="flex items-center justify-center gap-4 md:justify-end">
-            {socialLinks.slice(0, 3).map((link) => {
-              const Icon =
-                link.icon === "linkedin"
-                  ? Linkedin
-                  : link.icon === "github"
-                    ? Github
-                    : Mail;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-text-muted transition-colors hover:text-accent-primary"
-                  aria-label={link.label}
-                >
-                  <Icon className="h-5 w-5" />
-                </a>
-              );
-            })}
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="text-text-muted transition-colors hover:text-accent-primary"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.icon === "email" ? undefined : "_blank"}
+                rel={link.icon === "email" ? undefined : "noopener noreferrer"}
+                className="text-text-muted transition-colors hover:text-accent-primary"
+                aria-label={link.label}
+              >
+                <SocialIcon icon={link.icon} />
+              </a>
+            ))}
           </div>
         </div>
 

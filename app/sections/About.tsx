@@ -13,12 +13,10 @@ import { staggerContainer, staggerItem } from "@/app/lib/animations";
 const codeSnippet = `const developer = {
   name: "Uzair Shafqat",
   role: "Full-Stack Developer",
-  focus: [
-    "SaaS",
-    "Enterprise Systems",
-    "AI Solutions"
-  ],
-  build: () => scalableApplications()
+  location: "Pakistan",
+  skills: ["React", "Next.js", "Node.js", "MongoDB", "TypeScript"],
+  openToWork: true,
+  coffee: Infinity
 };`;
 
 function CodeTerminal() {
@@ -44,25 +42,27 @@ function CodeTerminal() {
 
   const highlight = (text: string) => {
     const parts = text.split(
-      /(const|developer|name|role|focus|build|scalableApplications|"[^"]*")/g,
+      /(const|developer|name|role|location|skills|openToWork|coffee|true|Infinity|"[^"]*")/g,
     );
 
     return parts.map((part, i) => {
-      if (part === "const" || part === "build")
+      if (part === "const" || part === "true" || part === "Infinity")
         return (
           <span key={i} className="text-accent-tertiary">
             {part}
           </span>
         );
-      if (part === "developer" || part === "name" || part === "role" || part === "focus")
+      if (
+        part === "developer" ||
+        part === "name" ||
+        part === "role" ||
+        part === "location" ||
+        part === "skills" ||
+        part === "openToWork" ||
+        part === "coffee"
+      )
         return (
           <span key={i} className="text-accent-secondary">
-            {part}
-          </span>
-        );
-      if (part === "scalableApplications")
-        return (
-          <span key={i} className="text-accent-tertiary">
             {part}
           </span>
         );
@@ -80,14 +80,14 @@ function CodeTerminal() {
     <div className="relative">
       <div className="absolute -inset-4 rounded-3xl bg-accent-primary/10 blur-2xl" />
       <LiquidGlass variant="elevated" className="relative overflow-hidden p-0">
-        <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+        <div className="flex items-center gap-2 border-b border-border px-4 py-3">
           <span className="h-3 w-3 rounded-full bg-red-500/80" />
           <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
           <span className="h-3 w-3 rounded-full bg-green-500/80" />
-          <span className="ml-2 font-mono text-xs text-text-muted">developer.ts</span>
+          <span className="ml-2 font-code text-xs text-text-muted">developer.ts</span>
         </div>
         <pre
-          className={`overflow-x-auto p-6 font-mono text-sm leading-relaxed text-text-secondary ${!done ? "typing-cursor" : ""}`}
+          className={`code-editor overflow-x-auto p-6 font-code text-sm leading-relaxed text-text-secondary ${!done ? "typing-cursor" : ""}`}
         >
           <code>{highlight(displayed)}</code>
         </pre>

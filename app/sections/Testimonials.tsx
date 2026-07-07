@@ -46,19 +46,30 @@ export function Testimonials() {
           </Reveal>
         </div>
 
-        <div
-          ref={scrollRef}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          className="mt-16 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <TestimonialCard
-              key={`${testimonial.author}-${index}`}
-              testimonial={testimonial}
-              index={index % testimonials.length}
-            />
-          ))}
+        <div className="relative mt-16 max-w-full overflow-hidden">
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-bg-primary to-transparent"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-bg-primary to-transparent"
+            aria-hidden
+          />
+
+          <div
+            ref={scrollRef}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
+              <TestimonialCard
+                key={`${testimonial.author}-${index}`}
+                testimonial={testimonial}
+                index={index % testimonials.length}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
