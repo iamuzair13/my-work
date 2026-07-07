@@ -16,6 +16,7 @@
   --color-border-hover: var(--border-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-code: var(--font-jetbrains-mono);
 }
 
 * {
@@ -24,30 +25,52 @@
 
 html {
   scroll-behavior: smooth;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 body {
   background:
+    linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%),
     radial-gradient(
       ellipse at 20% 50%,
-      rgba(99, 102, 241, 0.15) 0%,
+      rgba(59, 130, 246, var(--mesh-opacity)) 0%,
       transparent 50%
     ),
     radial-gradient(
       ellipse at 80% 20%,
-      rgba(139, 92, 246, 0.1) 0%,
+      rgba(99, 102, 241, calc(var(--mesh-opacity) * 0.8)) 0%,
       transparent 50%
     ),
     radial-gradient(
       ellipse at 50% 80%,
-      rgba(6, 182, 212, 0.08) 0%,
+      rgba(6, 182, 212, calc(var(--mesh-opacity) * 0.6)) 0%,
       transparent 50%
     ),
     var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
   overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.font-code {
+  font-family: var(--font-jetbrains-mono), var(--font-geist-mono), monospace;
 }
 
 ::selection {
@@ -56,45 +79,53 @@ body {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
   box-shadow: var(--glass-shadow);
 }
 
 .glass-elevated {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--glass-bg-elevated);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
-  box-shadow: var(--glass-shadow), var(--glass-inset);
+  box-shadow: var(--glass-shadow);
 }
 
 .glass-subtle {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg-subtle);
+  backdrop-filter: var(--glass-backdrop-subtle);
+  -webkit-backdrop-filter: var(--glass-backdrop-subtle);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
 }
 
 .glass-hero {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--glass-bg-hero);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
-  box-shadow: var(--glass-shadow), var(--glass-inset);
+  box-shadow: var(--glass-shadow);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.hero-text-shadow {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dark .hero-text-shadow {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .gradient-border {
@@ -206,19 +237,23 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 12px;
   font-weight: 500;
   font-size: 0.9375rem;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: white;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.35);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.5);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
 }
 
 .btn-secondary {
@@ -226,7 +261,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 12px;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -234,13 +269,17 @@ body {
   backdrop-filter: blur(16px);
   border: 1px solid var(--btn-secondary-border);
   color: var(--text-primary);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  border-color: rgba(99, 102, 241, 0.4);
+  border-color: var(--accent-primary);
   background: var(--btn-secondary-bg-hover);
   transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
 }
 
 .input-glass {
@@ -261,7 +300,7 @@ body {
 }
 
 .input-glass:focus {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--input-bg);
   border-color: rgba(99, 102, 241, 0.5);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
@@ -300,8 +339,8 @@ button:focus-visible {
   .glass,
   .glass-elevated,
   .glass-hero {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
   }
 }
 

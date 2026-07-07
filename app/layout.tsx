@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import { CustomCursor } from "@/app/components/CustomCursor";
 import { PageLoader } from "@/app/components/PageLoader";
 import { ScrollProgress } from "@/app/components/ScrollProgress";
 import { Providers } from "@/app/providers";
-import { siteConfig } from "@/app/data/portfolio";
+import { siteConfig, socialLinks } from "@/app/data/portfolio";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,7 +19,16 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://uzairshafqat.dev";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Uzair Shafqat | Software Engineer & Full-Stack Developer",
   description:
     "I build scalable web applications, SaaS products, and AI-powered solutions. Specializing in React, Next.js, Node.js, and enterprise systems.",
@@ -39,12 +48,23 @@ export const metadata: Metadata = {
     description: "Building scalable web applications and SaaS products.",
     type: "website",
     locale: "en_US",
+    url: siteUrl,
+    siteName: "Uzair Shafqat Portfolio",
+    images: [
+      {
+        url: "/images/image.jpg",
+        width: 480,
+        height: 600,
+        alt: "Uzair Shafqat - Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Uzair Shafqat | Software Engineer",
     description:
       "Full-Stack Developer specializing in SaaS and business applications.",
+    images: ["/images/image.jpg"],
   },
 };
 
@@ -58,11 +78,9 @@ const structuredData = {
     "@type": "PostalAddress",
     addressCountry: "Pakistan",
   },
-  sameAs: [
-    "https://linkedin.com/in/uzairshafqat",
-    "https://github.com/uzairshafqat",
-    "https://upwork.com/freelancers/uzairshafqat",
-  ],
+  sameAs: socialLinks
+    .filter((link) => link.icon !== "email")
+    .map((link) => link.href),
 };
 
 export default function RootLayout({
@@ -73,7 +91,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
@@ -82,7 +100,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="min-h-screen bg-bg-primary text-text-primary antialiased">
+      <body className="min-h-screen bg-bg-primary text-text-primary antialiased transition-colors duration-300 ease-in-out">
         <svg
           style={{ position: "absolute", width: 0, height: 0 }}
           aria-hidden
@@ -144,7 +162,9 @@ export default function RootLayout({
           <PageLoader />
           <ScrollProgress />
           <CustomCursor />
-          <main id="main-content">{children}</main>
+          <main id="main-content" className="relative z-[1]">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

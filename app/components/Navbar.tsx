@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { GlassButton } from "@/app/components/ui/GlassButton";
 import { LiquidGlass } from "@/app/components/ui/LiquidGlass";
 import { navLinks, siteConfig } from "@/app/data/portfolio";
@@ -62,13 +63,13 @@ export function Navbar() {
           variant="elevated"
           className={cn(
             "pointer-events-auto w-full max-w-fit transition-all duration-300",
-            scrolled ? "shadow-[0_8px_32px_rgba(0,0,0,0.3)]" : "",
+            scrolled && "liquid-glass-scrolled shadow-[0_8px_32px_rgba(0,0,0,0.12)]",
           )}
           style={{ borderRadius: "9999px" }}
         >
           <div
             className={cn(
-              "flex items-center gap-6 transition-all duration-300",
+              "flex items-center gap-4 transition-all duration-300 lg:gap-6",
               scrolled ? "px-4 py-2" : "px-6 py-3",
             )}
           >
@@ -98,27 +99,31 @@ export function Navbar() {
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent-primary shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
+                      <span className="absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent-primary shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
                     )}
                   </a>
                 );
               })}
             </nav>
 
-            <div className="hidden lg:block">
+            <div className="hidden items-center gap-3 lg:flex">
+              <ThemeToggle />
               <GlassButton href="#contact" variant="primary" className="!px-5 !py-2 text-sm">
                 Get in Touch
               </GlassButton>
             </div>
 
-            <button
-              type="button"
-              className="focus-ring rounded-full p-2 text-text-primary lg:hidden"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            <div className="flex items-center gap-2 lg:hidden">
+              <ThemeToggle />
+              <button
+                type="button"
+                className="focus-ring rounded-full p-2 text-text-primary"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </LiquidGlass>
       </header>

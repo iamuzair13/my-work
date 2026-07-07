@@ -42,11 +42,11 @@ export function ServiceCard({
       style={tilt.style}
       onMouseMove={tilt.onMouseMove}
       onMouseLeave={tilt.onMouseLeave}
-      className={cn("h-full", className)}
+      className={cn("h-full ", className)}
     >
       <GlassCard
         hover
-        className="group h-full p-8 transition-all duration-300 hover:bg-white/[0.1] hover:shadow-[0_0_40px_rgba(99,102,241,0.15)]"
+        className="group h-full p-4  transition-all duration-300 hover:bg-white/[0.1] hover:shadow-[0_0_40px_rgba(99,102,241,0.15)]"
       >
         <div className="mb-5 inline-flex animate-float rounded-xl bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 p-3">
           <Icon className="h-6 w-6 text-accent-primary" />

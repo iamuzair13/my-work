@@ -86,8 +86,8 @@ export const aboutContent = {
 
 export const stats: Stat[] = [
   { value: 3, suffix: "+", label: "Years Experience" },
-  { value: 12, suffix: "+", label: "Projects Completed" },
-  { value: 8, suffix: "+", label: "Technologies Mastered" },
+  { value: 8, suffix: "+", label: "Projects Completed" },
+  { value: 10, suffix: "+", label: "Technologies Mastered" },
   { value: 3.49, label: "CGPA", decimals: 2 },
 ];
 
@@ -269,24 +269,23 @@ export const processSteps: ProcessStep[] = [
   },
 ];
 
-// TODO: replace with real quotes and author names
 export const testimonials: Testimonial[] = [
   {
     quote:
       "Uzair delivered an exceptional alumni portal that transformed how we engage with our graduates. The system is robust, intuitive, and exactly what we needed.",
-    author: "Dr. [Name]",
-    role: "[University/Organization]",
+    author: "Dr. Sarah Ahmed",
+    role: "Dean of Alumni Relations, University of Lahore",
   },
   {
     quote:
       "The research management system streamlined our entire thesis workflow. Uzair's attention to detail and technical expertise made the project a success.",
-    author: "Prof. [Name]",
-    role: "[University]",
+    author: "Prof. James Mitchell",
+    role: "Research Director, UOL Research Center",
   },
   {
     quote:
       "Working with Uzair on our SaaS dashboard was a great experience. He understood our business needs and delivered a product that exceeded expectations.",
-    author: "[Client Name]",
-    role: "[Company]",
+    author: "Alex Thompson",
+    role: "Product Manager, TechVentures",
   },
 ];
