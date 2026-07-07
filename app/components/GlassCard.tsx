@@ -17,7 +17,7 @@ export function GlassCard({
   children,
   className,
   variant = "default",
-  hover = false,
+  hover = true,
   style,
   liquidFilter = false,
 }: GlassCardProps) {
@@ -26,7 +26,7 @@ export function GlassCard({
       whileHover={
         hover
           ? {
-              y: -6,
+              y: -4,
               transition: {
                 duration: 0.3,
                 ease: [0.16, 1, 0.3, 1],
@@ -36,7 +36,7 @@ export function GlassCard({
       }
       className={cn(
         hover &&
-          "transition-all duration-300 hover:border-white/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_60px_rgba(99,102,241,0.1)]",
+          "transition-all  duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08),0_0_60px_rgba(59,130,246,0.08)]",
         "relative",
         className,
       )}
@@ -44,7 +44,7 @@ export function GlassCard({
       <LiquidGlass
         variant={variant}
         liquidFilter={liquidFilter}
-        className="h-full w-full"
+        className="h-full w-full p-4"
         style={style}
       >
         {children}

@@ -3,6 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { LiquidGlass } from "@/app/components/ui/LiquidGlass";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -12,28 +13,26 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <button
-        type="button"
-        className="rounded-lg p-2 text-text-primary"
-        aria-label="Toggle theme"
-      >
-        <Moon className="h-5 w-5" />
-      </button>
-    );
-  }
-
-  const isDark = resolvedTheme === "dark";
+  const isDark = mounted && resolvedTheme === "dark";
 
   return (
-    <button
-      type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="rounded-lg p-2 text-text-primary transition-colors hover:text-accent-primary"
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-    >
-      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-    </button>
+    <LiquidGlass variant="pill" shine={false} className="inline-flex">
+      <button
+        type="button"
+        onClick={() => setTheme(isDark ? "light" : "dark")}
+        className="focus-ring flex h-11 w-11 items-center justify-center rounded-full text-text-primary transition-all duration-300 hover:text-accent-primary active:scale-[0.98]"
+        aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      >
+        {mounted ? (
+          isDark ? (
+            <Sun className="h-5 w-5" />
+          ) : (
+            <Moon className="h-5 w-5" />
+          )
+        ) : (
+          <Moon className="h-5 w-5" />
+        )}
+      </button>
+    </LiquidGlass>
   );
 }

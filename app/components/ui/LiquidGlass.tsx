@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/app/lib/utils";
 import { forwardRef } from "react";
+import { cn } from "@/app/lib/utils";
 
 export type LiquidGlassVariant =
   | "default"
@@ -20,59 +20,44 @@ interface LiquidGlassProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const variantStyles: Record<LiquidGlassVariant, React.CSSProperties> = {
   default: {
-    background: "rgba(255, 255, 255, 0.08)",
-    backdropFilter: "blur(20px) saturate(180%)",
-    WebkitBackdropFilter: "blur(20px) saturate(180%)",
-    border: "1px solid rgba(255, 255, 255, 0.18)",
+    background: "var(--glass-bg)",
+    backdropFilter: "var(--glass-backdrop)",
+    WebkitBackdropFilter: "var(--glass-backdrop)",
+    border: "1px solid var(--glass-border)",
     borderRadius: "24px",
-    boxShadow: `
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.05)
-    `,
+    boxShadow: "var(--glass-shadow)",
   },
   elevated: {
-    background: "rgba(255, 255, 255, 0.1)",
-    backdropFilter: "blur(24px) saturate(180%)",
-    WebkitBackdropFilter: "blur(24px) saturate(180%)",
-    border: "1px solid rgba(255, 255, 255, 0.2)",
+    background: "var(--glass-bg-elevated)",
+    backdropFilter: "var(--glass-backdrop)",
+    WebkitBackdropFilter: "var(--glass-backdrop)",
+    border: "1px solid var(--glass-border)",
     borderRadius: "24px",
-    boxShadow: `
-      0 12px 40px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.25),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.05)
-    `,
+    boxShadow: "var(--glass-shadow)",
   },
   subtle: {
-    background: "rgba(255, 255, 255, 0.04)",
-    backdropFilter: "blur(12px) saturate(150%)",
-    WebkitBackdropFilter: "blur(12px) saturate(150%)",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
+    background: "var(--glass-bg-subtle)",
+    backdropFilter: "var(--glass-backdrop-subtle)",
+    WebkitBackdropFilter: "var(--glass-backdrop-subtle)",
+    border: "1px solid var(--glass-border)",
     borderRadius: "24px",
-    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
   },
   hero: {
-    background: "rgba(255, 255, 255, 0.08)",
-    backdropFilter: "blur(20px) saturate(180%)",
-    WebkitBackdropFilter: "blur(20px) saturate(180%)",
-    border: "1px solid rgba(255, 255, 255, 0.18)",
+    background: "var(--glass-bg-hero)",
+    backdropFilter: "var(--glass-backdrop)",
+    WebkitBackdropFilter: "var(--glass-backdrop)",
+    border: "1px solid var(--glass-border)",
     borderRadius: "24px",
-    boxShadow: `
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.05)
-    `,
+    boxShadow: "var(--glass-shadow)",
   },
   pill: {
-    background: "rgba(255, 255, 255, 0.06)",
-    backdropFilter: "blur(16px) saturate(180%)",
-    WebkitBackdropFilter: "blur(16px) saturate(180%)",
-    border: "1px solid rgba(255, 255, 255, 0.12)",
+    background: "var(--glass-bg-pill)",
+    backdropFilter: "var(--glass-backdrop)",
+    WebkitBackdropFilter: "var(--glass-backdrop)",
+    border: "1px solid var(--glass-border)",
     borderRadius: "9999px",
-    boxShadow: `
-      0 4px 16px rgba(0, 0, 0, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15)
-    `,
+    boxShadow: "var(--glass-shadow)",
   },
 };
 
@@ -95,7 +80,7 @@ export const LiquidGlass = forwardRef<HTMLDivElement, LiquidGlassProps>(
       <Component
         ref={ref as React.Ref<HTMLDivElement>}
         className={cn(
-          "liquid-glass liquid-glass-component relative overflow-hidden",
+          "liquid-glass liquid-glass-component relative overflow-hidden transition-all duration-300 ease-in-out",
           className,
         )}
         style={{
